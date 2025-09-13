@@ -1,9 +1,50 @@
 import React, { useRef, useState } from "react";
 import { allCocktails } from "../constants";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const Menu = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const contentRef = useRef();
+
+  useGSAP(() => {
+    gsap.fromTo("#title", { opacity: 0 }, { opacity: 1, duration: 1 });
+    gsap.fromTo(
+      ".cocktail img",
+      { opacity: 0, xPercent: -100 },
+      { opacity: 1, xPercent: 1, duration: 1 }
+    );
+
+    gsap.fromTo(
+      ".details h2",
+      { opacity: 0, yPercent: 100 },
+      { opacity: 100, yPercent: 0, duration: 1, ease: "power1.inOut" }
+    );
+
+    gsap.fromTo(
+      ".details p",
+      { opacity: 0, yPercent: 100 },
+      { opacity: 100, yPercent: 0, duration: 1, ease: "power1.inOut" }
+    );
+
+    const mLeafTimeline = gsap.timeline({
+      scrollTrigger: {
+        Trigger: "#menu",
+        start: "top 30%",
+        end: "bottom 80%",
+        scrub: true,
+      },
+    });
+    mLeafTimeline
+      .from("#m-left-leaf", {
+        x: -100,
+        y: 100,
+      })
+      .from("#m-right-leaf", {
+        x: 100,
+        y: 100,
+      });
+  }, [currentIndex]);
 
   const totalCoctail = allCocktails.length;
 
@@ -80,24 +121,24 @@ const Menu = () => {
               aria-hidden="true"
             />
           </button>
-          <div className="cocktail">
-            <img
-              src={currentCocktail.image}
-              alt="coctail image"
-              className="object-contain"
-            />
+        </div>
+        <div className="cocktail">
+          <img
+            src={currentCocktail.image}
+            alt="coctail image"
+            className="object-contain"
+          />
+        </div>
+
+        <div className="recipe">
+          <div ref={contentRef} className="info">
+            <p>Recipe for:</p>
+            <p id="title">{currentCocktail.name}</p>
           </div>
 
-          <div className="recipe">
-            <div ref={contentRef} className="info">
-              <p>Recipe for:</p>
-              <p id="title">{currentCocktail.name}</p>
-            </div>
-
-            <div className="details">
-              <h2>{currentCocktail.title}</h2>
-              <p>{currentCocktail.description}</p>
-            </div>
+          <div className="details">
+            <h2>{currentCocktail.title}</h2>
+            <p>{currentCocktail.description}</p>
           </div>
         </div>
       </div>
