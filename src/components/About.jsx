@@ -38,7 +38,7 @@ const About = () => {
   return (
     <div id="about">
       <div className="mb-16 md:px-0 px-5">
-        <div className="content">
+        <div className="content mb-10">
           <div className="md:col-span-8">
             <p className="badge"> Best Cocktails</p>
             <h2>
@@ -62,7 +62,7 @@ const About = () => {
             </div>
           </div>
         </div>
-        <div className="top-grid">
+        <div className="top-grid grid">
           <div className="md:col-span-3">
             <div className="noisy" />
             <img src="/images/abt1.png" alt="grid-img-1" />

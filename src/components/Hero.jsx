@@ -75,15 +75,15 @@ const Hero = () => {
           alt="left-leaf"
           className="left-leaf"
         />
-        <div className="body">
-          <div className="content">
-            <div className="space-y-5 hidden md:block">
+        <div className="body ">
+          <div className="content max-md:items-center">
+            <div className="space-y-5 hidden md:block ">
               <p>Cool. Crisp, Classic</p>
               <p>
                 Sip the spirit <br /> of summer
               </p>
             </div>
-            <div className="view-cocktails">
+            <div className="view-cocktails ">
               <p className="subtitle">
                 Every cocktail on our menu is a blend flair, and timeless recipe
                 - designed to delight your senses.
@@ -96,7 +96,7 @@ const Hero = () => {
       <div className="video absolute inset-0">
         <video
           ref={videoRef}
-          src="/videos/input.mp4"
+          src="/videos/output.mp4"
           muted
           playsInline
           preload="auto"
